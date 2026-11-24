@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://zhangyiyan1220.github.io/blog-astro/sitemap-index.xml
