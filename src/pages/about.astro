@@ -19,10 +19,12 @@ const { Content } = await render(page);
     <section class="section">
       <div class="about-card">
         <div class="profile">
-          <div class="avatar" aria-hidden="true">颜</div>
+          <div class="avatar">
+            <img src={`${import.meta.env.BASE_URL}images/mascot.jpg`} alt="吉祥物小狗头像" width="64" height="64" loading="lazy" />
+          </div>
           <div>
             <h2>{SITE.authorName}</h2>
-            <p>{SITE.shortTitle} · {SITE.role}</p>
+            <p>{SITE.shortTitle} · {SITE.role} · 常驻吉祥物：捧咖啡的小狗</p>
           </div>
         </div>
         <div class="prose">

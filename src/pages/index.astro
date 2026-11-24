@@ -10,6 +10,14 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout>
   <section class="wrap hero">
+    <img
+      class="mascot"
+      src={`${base}images/mascot.jpg`}
+      alt="吉祥物：捧着咖啡的小狗"
+      width="128"
+      height="128"
+      loading="eager"
+    />
     <div class="hero-eyebrow">Life notes · 生活随笔</div>
     <h1>你好，我是{SITE.authorName}。</h1>
     <p>{SITE.intro}</p>
@@ -17,6 +25,12 @@ const base = import.meta.env.BASE_URL;
       <span>{SITE.role} · {SITE.shortTitle}</span>
       <a href={SITE.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       <a href={`${base}rss.xml`}>RSS 订阅</a>
+    </div>
+    <div class="paw-row" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20"><g fill="currentColor"><ellipse cx="12" cy="16" rx="6" ry="5"/><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="7" r="2.2"/><circle cx="14.5" cy="7" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/></g></svg>
+      <svg viewBox="0 0 24 24" width="17" height="17"><g fill="currentColor"><ellipse cx="12" cy="16" rx="6" ry="5"/><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="7" r="2.2"/><circle cx="14.5" cy="7" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/></g></svg>
+      <svg viewBox="0 0 24 24" width="14" height="14"><g fill="currentColor"><ellipse cx="12" cy="16" rx="6" ry="5"/><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="7" r="2.2"/><circle cx="14.5" cy="7" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/></g></svg>
+      <svg viewBox="0 0 24 24" width="12" height="12"><g fill="currentColor"><ellipse cx="12" cy="16" rx="6" ry="5"/><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="7" r="2.2"/><circle cx="14.5" cy="7" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/></g></svg>
     </div>
   </section>
 

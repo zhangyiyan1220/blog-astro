@@ -4,9 +4,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="页面不存在" description="这里什么都没有">
   <div class="wrap not-found">
+    <img
+      class="mascot mascot--lonely"
+      src={`${import.meta.env.BASE_URL}images/mascot.jpg`}
+      alt="迷路的吉祥物小狗"
+      width="112"
+      height="112"
+      loading="lazy"
+    />
     <p class="code">404</p>
     <h1>走错路了</h1>
-    <p>这个页面不存在，也许它搬走了，或者从来没来过。</p>
+    <p>这个页面不存在，连小狗都找不到路了。</p>
     <a class="button" href={import.meta.env.BASE_URL}>回到首页</a>
   </div>
 </BaseLayout>

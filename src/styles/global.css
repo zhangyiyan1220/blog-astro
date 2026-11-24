@@ -520,11 +520,74 @@ a.tag:hover { color: var(--accent); background: var(--accent-soft); border-color
 }
 .button:hover { filter: brightness(1.08); color: #fff8ec; transform: translateY(-1px); }
 
+/* ===== 可爱卡通元素 ===== */
+.mascot {
+  position: absolute;
+  top: 26px;
+  right: 2%;
+  width: 118px;
+  height: 118px;
+  border-radius: 30px;
+  object-fit: cover;
+  border: 4px solid color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 16px 30px -14px var(--shadow-color, rgba(60, 40, 20, 0.55)), 0 0 0 1px var(--border);
+  transform: rotate(4deg);
+  animation: mascot-bob 4s ease-in-out infinite;
+}
+
+.mascot--lonely {
+  position: static;
+  display: inline-block;
+  width: 104px;
+  height: 104px;
+  transform: rotate(-4deg);
+  margin-bottom: 18px;
+}
+
+@keyframes mascot-bob {
+  0%, 100% { transform: rotate(4deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-8px); }
+}
+
+.paw-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
+  color: var(--faint);
+  opacity: 0.75;
+}
+.paw-row svg:nth-child(2) { transform: translateY(-5px) rotate(-12deg); }
+.paw-row svg:nth-child(3) { transform: translateY(-9px); color: var(--accent); }
+.paw-row svg:nth-child(4) { transform: translateY(-12px) rotate(10deg); opacity: 0.55; }
+
+.avatar { overflow: hidden; }
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.prose img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
 /* ===== 响应式 ===== */
 @media (max-width: 640px) {
   .wrap, .wrap-wide { width: min(calc(100% - 36px), var(--width)); }
   .nav-links { gap: 14px; font-size: 0.84rem; }
   .hero { padding: 60px 0 44px; }
+  .mascot {
+    position: static;
+    display: block;
+    width: 88px;
+    height: 88px;
+    margin-bottom: 16px;
+    animation: none;
+  }
   .post-item { grid-template-columns: 1fr; gap: 4px; padding: 22px 0; }
   .post-date { padding-top: 0; }
   .post-nav { grid-template-columns: 1fr; padding: 18px 20px; }
