@@ -6,6 +6,22 @@ import { SITE } from '../consts';
 
 const posts = await getPublishedPosts();
 const base = import.meta.env.BASE_URL;
+
+const notes = [
+  { tag: 'MOOD · 今日心情', text: '阳光落在书桌上的下午，什么都想写一点。' },
+  { tag: 'NOW · 正在做', text: '一边啃面包，一边改博客的小角落。' },
+  { tag: 'LIKE · 最近喜欢', text: '美拉德色、旧明信片、和毛茸茸的小熊。' },
+  { tag: 'WISH · 小小愿望', text: '把日子过成一本可以慢慢翻的书。' },
+];
+
+const fragments = [
+  { img: 'deco-bread.jpg', caption: '篮子里的吐司，刚烤好' },
+  { img: 'deco-postcards.jpg', caption: '旧明信片，来自很远的地方' },
+  { img: 'deco-bears.jpg', caption: '小熊们排排坐' },
+  { img: 'deco-notes-light.jpg', caption: '音符灯亮起来的晚上' },
+  { img: 'deco-piano.jpg', caption: '英格兰 1765 的钢琴' },
+  { img: 'deco-lily.jpg', caption: '百合花开在旧木柜旁' },
+];
 ---
 
 <BaseLayout>
@@ -35,6 +51,56 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <section class="wrap section">
+    <div class="flip-scene">
+      <div class="flip-card" id="flip-card">
+        <div class="flip-face flip-face--front">
+          <div class="flip-title">关于我的小卡片</div>
+          <div class="flip-hint">· 点我翻一翻 ·</div>
+        </div>
+        <div class="flip-face flip-face--back">
+          <p>
+            我是 <strong>{SITE.authorName}</strong>，一名{SITE.role}。<br />
+            在这里记录日常的碎碎念——散步、读书、<br />
+            深夜的麻辣烫，和书桌前那块毛毡板。<br />
+            <a href={`${base}about/`}>认识我 →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="music-divider" aria-hidden="true">♫ ♪ ♬</div>
+    <div class="section-head">
+      <h2>便利贴墙</h2>
+      <span style="font-size:0.85rem;color:var(--faint);">随手贴在这里的小纸条</span>
+    </div>
+    <div class="note-wall">
+      {notes.map((n) => (
+        <div class="note">
+          <span class="note-tag">{n.tag}</span>
+          {n.text}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>审美碎片</h2>
+      <span style="font-size:0.85rem;color:var(--faint);">贴在墙上的一小面照片墙</span>
+    </div>
+    <div class="collage">
+      {fragments.map((f) => (
+        <figure class="polaroid">
+          <img src={`${base}images/${f.img}`} alt={f.caption} loading="lazy" width="540" height="480" />
+          <figcaption>{f.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section">
     <div class="section-head">
       <h2>最近写的</h2>
       <a href={`${base}archive/`}>查看全部 →</a>
@@ -42,3 +108,10 @@ const base = import.meta.env.BASE_URL;
     <PostList posts={posts.slice(0, 6)} />
   </section>
 </BaseLayout>
+
+<script>
+  const card = document.getElementById('flip-card');
+  if (card) {
+    card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+  }
+</script>
