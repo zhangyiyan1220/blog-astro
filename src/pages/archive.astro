@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+const byYear = new Map<number, typeof posts>();
+
+for (const post of posts) {
+  const year = post.data.date.getUTCFullYear();
+  byYear.set(year, [...(byYear.get(year) ?? []), post]);
+}
+const groups = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
+---
+
+<BaseLayout title="文章归档" description="章亦颜的个人博客 · 全部文章按年份归档">
+  <div class="wrap">
+    <header class="page-head">
+      <h1>文章归档</h1>
+      <p>一共写了 {posts.length} 篇。按时间倒着排，像翻一本慢慢变厚的本子。</p>
+    </header>
+
+    <section class="section">
+      {groups.map(([year, yearPosts]) => (
+        <div class="year-group">
+          <h2 class="year-title">{year}</h2>
+          <PostList posts={yearPosts} showExcerpt={false} />
+        </div>
+      ))}
+    </section>
+  </div>
+</BaseLayout>

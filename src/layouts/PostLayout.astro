@@ -1,0 +1,57 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { Post } from '../lib/posts';
+import { formatDate } from '../lib/posts';
+import { SITE } from '../consts';
+
+interface Props {
+  post: Post;
+  prev?: Post;
+  next?: Post;
+}
+
+const { post, prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={post.data.title} description={post.data.description || SITE.description} type="article">
+  <article class="wrap article">
+    <header class="article-header">
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span class="divider" aria-hidden="true"></span>
+        <span>{SITE.authorName}</span>
+        {post.data.tags.length > 0 && (
+          <>
+            <span class="divider" aria-hidden="true"></span>
+            <span class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a class="tag" href={`${base}tags/${encodeURIComponent(tag)}/`}>#{tag}</a>
+              ))}
+            </span>
+          </>
+        )}
+      </div>
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <nav class="post-nav" aria-label="文章导航">
+      {prev ? (
+        <a class="post-nav-item" href={`${base}posts/${prev.id}/`}>
+          <span class="post-nav-label">← 更早一篇</span>
+          <span class="post-nav-title">{prev.data.title}</span>
+        </a>
+      ) : <span></span>}
+      {next && (
+        <a class="post-nav-item next" href={`${base}posts/${next.id}/`}>
+          <span class="post-nav-label">更新一篇 →</span>
+          <span class="post-nav-title">{next.data.title}</span>
+        </a>
+      )}
+    </nav>
+  </article>
+</BaseLayout>

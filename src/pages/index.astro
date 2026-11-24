@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getPublishedPosts } from '../lib/posts';
+import { SITE } from '../consts';
+
+const posts = await getPublishedPosts();
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout>
+  <section class="wrap hero">
+    <div class="hero-eyebrow">Life notes · 生活随笔</div>
+    <h1>你好，我是{SITE.authorName}。</h1>
+    <p>{SITE.intro}</p>
+    <div class="hero-meta">
+      <span>{SITE.role} · {SITE.shortTitle}</span>
+      <a href={SITE.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href={`${base}rss.xml`}>RSS 订阅</a>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>最近写的</h2>
+      <a href={`${base}archive/`}>查看全部 →</a>
+    </div>
+    <PostList posts={posts.slice(0, 6)} />
+  </section>
+</BaseLayout>
